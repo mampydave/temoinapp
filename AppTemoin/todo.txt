@@ -1,0 +1,56 @@
+Achat billet d'avion:
+
+    Langage java
+    code versioning : gestion
+    Bdd : au choix 
+
+    Conception: 
+        avion : id,modele (fait)
+        type siege: id , type (fait)
+        ville desservie (fait)
+        vol (id ,numero
+         de vol,date_heure_depart,date_heure_arrivee,ville depart , ville arrive, idAvion) (fait)
+        user (id,nom,mail) (fait)
+        reservation (documenter) (fait)
+    
+    Back office:
+        login/mdp (fait)
+        CRUD vol (fait)
+        recherche multi critere vol (fait)
+        regle de gestion:
+            promotion par vol: (ok)
+                definir nombre de siege par classe en promotion(%)
+            reservation:
+                parametrage reservation lors de definition de vol exemple : 3h avant vol pour dernier reservation
+            annulation reservation:
+                de meme ex 24 h avant que l'on peut annuler
+                
+
+    Front office:
+        recherche multi critere vol
+        reserver vol
+
+
+
+comment sauvegarder l'heure dans postgres (TIME ou timestamp)
+pattern pour l'heure(heure simplement) "HH:mm"
+recuperation de date seul et heure seule pour timestamp
+
+1 000  10 % 
+
+
+= 1 000 - 100
+
+900
+
+
+
+numero_Vol , ville_depart , ville_arrivee, numero_siege
+date_depart,heure_depart
+
+
+5 a 10 enfant 
+11 et plus adulte
+
+
+

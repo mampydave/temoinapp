@@ -1,0 +1,237 @@
+body {
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 1s ease-in-out, filter 1s ease-in-out;
+}
+
+.fade-out {
+    opacity: 0;
+    filter: blur(10px);
+}
+.add-section {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+h1 {
+    margin: 0;
+}
+
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+    z-index: 1;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    color: black;
+    background-color: white;
+    border: none;
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+    background-color: #f2f2f2;
+}
+
+
+.add-section h2 {
+    color: #003366;
+    text-transform: uppercase;
+}
+
+.add-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-section input,.add-section select, .add-section button {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 80%;
+}
+
+.add-section button {
+    background-color: #003366;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-section button:hover {
+    background-color: #0055aa;
+}
+.error {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+        /* Style de la fenêtre modale */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 40%;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .close {
+            cursor: pointer;
+            font-size: 20px;
+            border: none;
+            background: none;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9;
+        }
+
+        /* Style de base pour la section des vols */
+.flights-list {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flights-list h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Style du tableau */
+.flights-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.flights-list th, .flights-list td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.flights-list th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.flights-list tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+/* Style du bouton Ajouter */
+.btn-ajouter {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-decoration: none; /* Supprime le soulignement du lien */
+    display: inline-block; /* Permet de styliser le lien comme un bouton */
+    transition: background-color 0.3s ease;
+}
+
+.btn-ajouter:hover {
+    background-color: #218838;
+}
+
+
+.btn-modifier {
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-modifier:hover {
+    background-color: #e0a800;
+}
+
+.btn-supprimer {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-supprimer:hover {
+    background-color: #c82333;
+}
