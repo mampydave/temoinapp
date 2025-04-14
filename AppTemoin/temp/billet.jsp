@@ -21,6 +21,37 @@
                     }
                 });
             });
+            function downloadPdf(reservationId) {
+                // Créer un formulaire dynamiquement
+                // const form = document.createElement('form');
+                // form.method = 'GET';
+                // form.action = '/reservations/' + reservationId + '/download';
+                // document.body.appendChild(form);
+                // form.submit();
+                // document.body.removeChild(form);
+                
+                // Alternative avec fetch (décommentez si nécessaire)
+                
+                fetch('http://localhost:8083/reservations/' + reservationId + '/download')
+                    .then(response => {
+                        if (!response.ok) throw new Error('Erreur réseau');
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'reservation-' + reservationId + '.pdf';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        alert('Erreur lors du téléchargement: ' + error.message);
+                    });
+            }
         </script>
             
     </head>
@@ -46,7 +77,10 @@
                 <th>Heure de Départ</th>
                 <th>Prix</th>
                 <th>Classe</th>
+                <th>Beneficiaire</th>
                 <th>Action</th>
+                <th>Export</th>
+
             </tr>
 
             <%
@@ -64,12 +98,17 @@
                             <td><%= res.getHeure_depart() %></td>
                             <td><%= res.getPrixBillet() %></td>
                             <td><%= res.getClasseEcoOrBusi() %></td>
+                            <td><%= res.getBeneficiaire() %></td>
+
                             <td>
                                 <form action="annuler" method="post">
                                     <input type="hidden" name="idreservation" value="<%= res.getIdreservation() %>">
                                     <input type="datetime-local" name="dateAnnulation" required>
                                     <button type="submit" class="annuler-btn">Annuler</button>
                                 </form>
+                            </td>
+                            <td>
+                                <button onclick="downloadPdf(<%= res.getIdreservation() %>)" class="export-btn">Exporter</button>
                             </td>
                         </tr>
             <%
