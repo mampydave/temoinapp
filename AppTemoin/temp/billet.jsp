@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ page import="java.util.*,Office.*" %>
+<%@ page import="java.util.*,Office.*,java.io.*" %>
 
 <html>
     <head>
@@ -21,37 +21,37 @@
                     }
                 });
             });
-            function downloadPdf(reservationId) {
-                // Créer un formulaire dynamiquement
-                // const form = document.createElement('form');
-                // form.method = 'GET';
-                // form.action = '/reservations/' + reservationId + '/download';
-                // document.body.appendChild(form);
-                // form.submit();
-                // document.body.removeChild(form);
+            // function downloadPdf(reservationId) {
+            //     Créer un formulaire dynamiquement
+            //     const form = document.createElement('form');
+            //     form.method = 'GET';
+            //     form.action = '/reservations/' + reservationId + '/download';
+            //     document.body.appendChild(form);
+            //     form.submit();
+            //     document.body.removeChild(form);
                 
-                // Alternative avec fetch (décommentez si nécessaire)
+            //     Alternative avec fetch (décommentez si nécessaire)
                 
-                fetch('http://localhost:8083/reservations/' + reservationId + '/download')
-                    .then(response => {
-                        if (!response.ok) throw new Error('Erreur réseau');
-                        return response.blob();
-                    })
-                    .then(blob => {
-                        const url = window.URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = 'reservation-' + reservationId + '.pdf';
-                        document.body.appendChild(a);
-                        a.click();
-                        window.URL.revokeObjectURL(url);
-                        document.body.removeChild(a);
-                    })
-                    .catch(error => {
-                        console.error('Erreur:', error);
-                        alert('Erreur lors du téléchargement: ' + error.message);
-                    });
-            }
+            //     fetch('http://localhost:8083/reservations/' + reservationId + '/download')
+            //         .then(response => {
+            //             if (!response.ok) throw new Error('Erreur réseau');
+            //             return response.blob();
+            //         })
+            //         .then(blob => {
+            //             const url = window.URL.createObjectURL(blob);
+            //             const a = document.createElement('a');
+            //             a.href = url;
+            //             a.download = 'reservation-' + reservationId + '.pdf';
+            //             document.body.appendChild(a);
+            //             a.click();
+            //             window.URL.revokeObjectURL(url);
+            //             document.body.removeChild(a);
+            //         })
+            //         .catch(error => {
+            //             console.error('Erreur:', error);
+            //             alert('Erreur lors du téléchargement: ' + error.message);
+            //         });
+            // }
         </script>
             
     </head>
@@ -108,7 +108,12 @@
                                 </form>
                             </td>
                             <td>
-                                <button onclick="downloadPdf(<%= res.getIdreservation() %>)" class="export-btn">Exporter</button>
+                                <button type="button" class="export-btn"
+                                    onclick="window.open('telechargerBillet?idreservation=<%= res.getIdreservation() %>', '_blank');">
+                                    Exporter
+                                </button>
+                                
+                                <!-- <button onclick="downloadPdf(<%= res.getIdreservation() %>)" class="export-btn">Exporter</button> -->
                             </td>
                         </tr>
             <%

@@ -1,5 +1,7 @@
 package Office;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -187,4 +189,28 @@ public class FrontOffice {
 
         return model;
     }
+
+    @Url("/telechargerBillet")
+    public ModelView telechargerBillet(@Param("idreservation") String idReservation) {
+        ModelView mv = new ModelView("listBillet");
+
+        try {
+            PdfApiClient apiClient = new PdfApiClient("api-config.properties");
+            byte[] pdfBytes = apiClient.downloadPdf(idReservation).readAllBytes();
+            
+            mv.addObject("__isBinary", true); 
+            mv.addObject("contentType", "application/pdf");
+            mv.addObject("contentDisposition", 
+                        "attachment; filename=billet-" + idReservation + ".pdf");
+            mv.addObject("data", pdfBytes);
+        } catch (Exception e) {
+            
+            mv.addObject("message", "Erreur PDF: " + e.getMessage());
+            
+        }
+        return mv;
+
+    }
+
+    
 }
