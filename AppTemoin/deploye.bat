@@ -24,7 +24,8 @@ if exist "%temp%" (
 mkdir "%temp%\WEB-INF\lib"
 mkdir "%temp%\WEB-INF\classes"
 
-xcopy "%config_xml%\*" "%temp%\WEB-INF"
+xcopy "%config_xml%\*.properties" "%temp%\WEB-INF\classes" /Y
+xcopy "%config_xml%\*.xml" "%temp%\WEB-INF"
 xcopy /s /y "%web%\*.*" "%temp%"
 
 @REM copier le jar
