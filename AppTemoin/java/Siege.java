@@ -90,15 +90,16 @@ public class Siege {
         return one;
     }
 
-    public static ArrayList<Siege> getAllSiege(String avion){
+    public static ArrayList<Siege> getAllSiege(String avion, String idvol){
         // ModelView model = new ModelView("reservation.jsp");
         ArrayList<Siege> one = new ArrayList<>();
 
-        String sql = "select S.ID_Siege,A.modele,T.types as classe,numero_siege,R.Statut_Reservation as statut from sieges S join avion A on S.ID_Avion=A.ID_Avion join type_siege T on S.id_type_siege = T.ID_Type_Siege LEFT JOIN Reservation R on S.id_siege = R.ID_Siege where S.ID_Avion = ?";
+        String sql = "SELECT S.ID_Siege,A.modele,T.types AS classe,S.numero_siege,R.Statut_Reservation AS statut,V.id_vol FROM sieges S JOIN avion A ON S.ID_Avion = A.ID_Avion JOIN type_siege T ON S.id_type_siege = T.ID_Type_Siege JOIN vol V ON V.ID_Avion = A.ID_Avion LEFT JOIN Reservation R ON S.id_siege = R.ID_Siege AND R.id_vol = V.id_vol WHERE S.ID_Avion = ? AND V.id_vol = ?";
 
         try (Connection conn = Connect.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, Integer.parseInt(avion));    
+            stmt.setInt(1, Integer.parseInt(avion));
+            stmt.setInt(2, Integer.parseInt(idvol));
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id_Siege = rs.getInt("ID_Siege");

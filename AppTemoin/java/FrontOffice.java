@@ -28,7 +28,7 @@ public class FrontOffice {
     @Post
     public ModelView mettreSession(@Param("idVol") String idVol,@Param("idUser") String idUser,Mysession session) {
         ModelView model=new ModelView("reservation.jsp");
-        ArrayList<Siege> sieges = Siege.getAllSiege(Vol.getavionUsedByvol(idVol));
+        ArrayList<Siege> sieges = Siege.getAllSiege(Vol.getavionUsedByvol(idVol),idVol);
         
         session.add("idVol", Integer.parseInt(idVol));
         userConnecter.add("idUser", idUser);
@@ -113,7 +113,7 @@ public class FrontOffice {
             e.printStackTrace();
             model.addObject("message", "Erreur lors de la création du vol.");
         }
-        model.addObject("sieges", Siege.getAllSiege(Vol.getavionUsedByvol(idVol)));
+        model.addObject("sieges", Siege.getAllSiege(Vol.getavionUsedByvol(idVol),idVol));
         // model.addObject("avions", Avion.getAllAvion());
         // model.addObject("villes", Ville.getAllVille());
         return model;
